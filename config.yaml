@@ -1,0 +1,25 @@
+main:
+  path: main.py
+  # 描述
+
+  describe: 该包算法参考论文:基于词矢量的短文本分类;该论文使用TFIDF作为特征向量,最后使用最大熵分类器进行模型训练测试时,使用word2vec对集外词(OOV)进行替换.
+
+  name: &name bow_word2vec_oov
+
+  model: &model tfidf
+
+  max_features: 2000
+
+  max_keywords: 2000
+
+  full_mode: False
+
+  remove_stopword: True
+
+  train_data_file_path: new_train_all.csv
+  test_data_file_path: new_ood_labeled.csv
+#  结果输出到...
+  result_file_path: ['./',*name,'_',*model,'.csv']
+  # 使用什么模型：TFIDF 或者 BOW
+  # 日志文件路径
+  log_file_path: ['./',*name,'_',*model,'.log']
