@@ -4,7 +4,11 @@
 
 
 1. 二阶段法：(teo-phrase)
+
+
     1) 直接进行16个类分类
+
+
     2) 先对4个小类分类 再进行小类细分
 
 2. 最大熵法(ME(TFIDF+OOV))
@@ -25,10 +29,16 @@
 
 
     2) bow-CNN
+
+
 5. RF(random_forest.py)
 
 6. preprocess 预处理模块 分别将语料库预处理为
+
+
     BOC(Characteristic) --- boc.py
+
+
     BOW(Word)  --- bow.py
 
 参考论文：
