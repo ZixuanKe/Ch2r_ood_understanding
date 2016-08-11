@@ -15,26 +15,40 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.ensemble import RandomForestClassifier
 
+'''
+    基于二分类的尝试
+    方法1： 直接进行16个小类的分类
+    方法2： 先进行大类的分类，后进行小类的分类，两步走
 
-# 1、对中文进行处理（分词，简单的n-gram,BOW）
-# 2、GBDT
-# 3、两种错误分析的方法
-
+'''
 
 
 
 def sub_classfier(exam_bow_fea_data,exam_bow_fea_target):
+    '''
+
+    训练子分类分类器
+
+    :param exam_bow_fea_data: 数据
+    :param exam_bow_fea_target: 标签
+    :return: 返回 随机森林训练模型
+    '''
 
 
-
-    gb = RandomForestClassifier(n_estimators=200)   #TARGET为label2
+    rf = RandomForestClassifier(n_estimators=200)   #TARGET为label2
     print "target:",len(exam_bow_fea_target)
     print "data:",len(exam_bow_fea_data)
-    gb.fit(exam_bow_fea_data, exam_bow_fea_target)
-    return gb
+    rf.fit(exam_bow_fea_data, exam_bow_fea_target)
+    return rf
 
 def findAllTrainning(mainClass,exam_bow_fea):
 
+    '''
+    找出大类之下的，所有子分类
+    :param mainClass: 大类
+    :param exam_bow_fea: 训练数据
+    :return:    子类训练数据 子类训练标签
+    '''
     resultData = []
     for rec in range(len(exam)):
         if exam.iloc[rec].LABEL1 == mainClass:
@@ -44,6 +58,8 @@ def findAllTrainning(mainClass,exam_bow_fea):
     return resultData,resultTarget
 
 
+
+#读取数据
 print 'Loading Data'
 exam = pd.read_table('train_all.csv',
                      converters={'date': parse},encoding = 'utf-8')
@@ -52,11 +68,9 @@ exam = pd.read_table('train_all.csv',
 exam_test = pd.read_table('ch2r_test.csv',
                      converters={'date': parse},encoding = 'utf-8')
 
-print len(exam)
-print len(exam_test)
 
-#2、分词
 
+#分词
 exam = exam.drop(['SEGMENT_FULL','SEGMENT_EVERYWORD'],axis=1)
 exam_test = exam_test.drop(['SEGMENT_FULL','SEGMENT_EVERYWORD','SEGMENT_OOV','SEGMENT_OOV_EVERYWORD'],axis=1)
 exam['SENTENCE'] = [' '.join(jieba.cut(sentence)) for sentence in exam['SENTENCE']]
@@ -64,24 +78,17 @@ exam_test['SENTENCE'] = [' '.join(jieba.cut(sentence)) for sentence in exam_test
 print exam.head()
 exam['SENTENCE'] = exam['SEGMENT'].apply(lambda x:' '.join(x.split('|')))
 exam_test['SENTENCE'] = exam_test['SEGMENT'].apply(lambda x:' '.join(x.split('|')))
-# 默认是精确模式
-# jieba返回一个list
-# 用函数去表示一个list
 
+#预处理结果文件保存
 exam.to_csv('Exam_Prep.csv',encoding = 'utf-8')
 exam_test.to_csv('Exam_Prep_Test.csv',encoding = 'utf-8')
 
-print "2. CounVector"
 
-print 'CountVect'
 
+#找特征 BOW
 vect = CountVectorizer(token_pattern=r"(?u)\b\w+\b")
 exam_bow_fea = vect.fit_transform(exam['SENTENCE']).toarray()
 exam_bow_fea_test = vect.transform(exam_test['SENTENCE']).toarray()
-print len(vect.get_feature_names())
-print ','.join(vect.get_feature_names())
-print len(exam_test)
-print len(exam_bow_fea_test)
 
 
 
@@ -95,14 +102,13 @@ print len(exam_bow_fea_test_data)
 exam_bow_fea_test_target = exam_test['LABEL2']
 print len(exam_bow_fea_test_target)
 
+
+
 #特征读取完毕
 
-print '计算RandomForest分类'
 
 
-print '16个小类'
-
-print "Training RandomForest"
+# 方法1 直接对 16个小类进行分类
 esti = 400; dep = 7
 gb = RandomForestClassifier(n_estimators=200)
 gb.fit(exam_bow_fea_data,exam_bow_fea_target)    #直接fit即可，没有明确的标记，不像分类问题
@@ -113,17 +119,12 @@ print sum(exam_bow_fea_test_target == gb.predict(exam_bow_fea_test_data))/1184.0
 print sum(exam_bow_fea_test_target == gb.predict(exam_bow_fea_test_data))
 
 
-
-print '4个大类：'
-
+#方法2 先大类后小类
 
 exam_bow_fea_target = exam['LABEL1']
 exam_bow_fea_test_target = exam_test['LABEL1']
 
 exam_bow_fea_test_result = exam_test['LABEL2']  #终极结果
-
-
-print "Training RandomForest"
 
 esti = 400; dep = 7
 gb = RandomForestClassifier(n_estimators=200)
@@ -164,6 +165,8 @@ for i in range(len(exam_test)):
         result.append( gb4.predict(exam_bow_fea_test_data[i]))
 
 
+
+#保存结果
 # print sum( result == exam_bow_fea_test_result ) / 58.0
 np.savetxt('new.csv', exam_bow_fea_test_result.as_matrix(),fmt='%s', delimiter = '/t')
 np.savetxt('re.csv', np.asarray(result).flatten(),fmt='%s', delimiter = '/t')

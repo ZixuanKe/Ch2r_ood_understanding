@@ -16,31 +16,7 @@ from dateutil.parser import parse
 import pandas as pd
 import jieba
 
-#
-# print 'Loading Data'
-# exam = pd.read_table('new_train_all.csv',
-#                      converters={'date': parse},encoding = 'utf-8')
-#
-#
-# exam_test = pd.read_table('new_ood_labeled.csv',
-#                      converters={'date': parse},encoding = 'utf-8')
-#
-# print len(exam)
-# print len(exam_test)
 
-#2、分词
-
-#数字变number
-#的字被去掉
-#部分词没有在字典出现 、
-#替换的大部分是停用词
-
-# exam = exam.drop(['SEGMENT','SEGMENT_FULL','SEGMENT_EVERYWORD'],axis=1)
-# # exam_test = exam_test.drop(['SEGMENT','SEGMENT_FULL','SEGMENT_EVERYWORD','SEGMENT_OOV','SEGMENT_OOV_EVERYWORD'],axis=1)
-# exam['SENTENCE'] = [' '.join(jieba.cut(sentence,cut_all=True)) for sentence in exam['SENTENCE']]
-# exam_test['SENTENCE'] = [' '.join(jieba.cut(sentence,cut_all=True)) for sentence in exam_test['SENTENCE']]
-#
-#
 
 
 config = yaml.load(file('./config.yaml'))	#读取yaml配置文件
