@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05c12390-23dc-4bbb-a96e-afdc3b8f45a9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/1_BOW_GBDT.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bag_of_word_model_version2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/main.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test(old).py" afterPath="$PROJECT_DIR$/two-phrase.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/ME(TFIDF+OOV).py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
     </list>
     <ignored path="Ch2r_ood_understanding.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+            <state relative-caret-position="420">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -86,8 +83,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="119" />
-    <option name="y" value="125" />
+    <option name="x" value="136" />
+    <option name="y" value="60" />
     <option name="width" value="891" />
     <option name="height" value="828" />
   </component>
@@ -141,7 +138,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RandEmbeddingCNN" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -293,7 +290,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="119" y="125" width="891" height="828" extended-state="0" />
+    <frame x="136" y="60" width="891" height="828" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24914286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -383,8 +380,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        <state relative-caret-position="420">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
         </state>
       </provider>
