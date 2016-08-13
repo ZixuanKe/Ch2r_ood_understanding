@@ -1,9 +1,9 @@
 # Ch2r_ood_understanding
 
-对CH2r进行两只两种方法分类
+对CH2r进行两种方法分类
 
 
-1. 二阶段法：(teo-phrase)
+1. 二阶段法：(two-phrase)
 
 
     1) 直接进行16个类分类
