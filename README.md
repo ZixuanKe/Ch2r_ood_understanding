@@ -36,7 +36,8 @@
 ###二阶段法
 我们将分类切割成两部分，首先进行4个大类的分类，在大类的基础上，再对大类下的小类进行细分 
 > 这样做的合理性，在部分比赛参赛选手的做法中得到证实。理由是我们认为大类分类比小类分类更加容易，在大类之内进行小类分类，可以使得小类分类时范围减少，减少小类分类的难度。然而这样也有不合理性，比如，大类分类出错，则小类分类则无机会再分对，也即误差的传递性。
-参考论文： [Splusplus: A Feature-Rich Two-stage Classifier for Sentiment Analysis of Tweets](http://www.aclweb.org/anthology/S/S15/S15-2.pdf#page=557)
+
+> 参考论文： [Splusplus: A Feature-Rich Two-stage Classifier for Sentiment Analysis of Tweets](http://www.aclweb.org/anthology/S/S15/S15-2.pdf#page=557)
 
 在代码中，针对每个大类对应的小类，重新训练了各自的分类器：
 ```python
@@ -52,13 +53,15 @@ gb4 = sub_classfier(resultData,resultTarget)
 ###最大熵法
 使用最大熵模型直接分类作为对照组
 >* 最大熵模型在许多文本分类问题中都表现了他优越的性能，这里我们利用他作为对照组，观察后面CNN和RF的效果
-参考论文： [使用最大熵模型进行中文文本分类](http://www.cnki.net/KCMS/detail/detail.aspx?QueryID=4&CurRec=1&recid=&filename=JFYZ200501013&dbname=CJFD2005&dbcode=CJFQ&pr=&urlid=&yx=&v=MjkxMDVMRzRIdFRNcm85RVo0UjhlWDFMdXhZUzdEaDFUM3FUcldNMUZyQ1VSTHlmYitSckZ5L2hVYnpPTHl2U2Q=)
+
+> 参考论文： [使用最大熵模型进行中文文本分类](http://www.cnki.net/KCMS/detail/detail.aspx?QueryID=4&CurRec=1&recid=&filename=JFYZ200501013&dbname=CJFD2005&dbcode=CJFQ&pr=&urlid=&yx=&v=MjkxMDVMRzRIdFRNcm85RVo0UjhlWDFMdXhZUzdEaDFUM3FUcldNMUZyQ1VSTHlmYitSckZ5L2hVYnpPTHl2U2Q=)
 
 >* 当逻辑回归用于多分类问题时，可将损失函数改为交叉熵之后，则其成为最大熵模型[LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression)
 
 
 >* 为了提高分类精度，针对部分在字典外的词，使用word2vec用外部语料（论文中使用SMP2015给出的微博数据，1000万条）进行OOV(out-of-vocabulary)替换（替换为与词汇表最近的词）
-参考论文： [基于词矢量相似度的短文本分类](http://www.cnki.net/KCMS/detail/detail.aspx?QueryID=0&CurRec=1&recid=&filename=SDDX201412004&dbname=CJFDLAST2015&dbcode=CJFQ&pr=&urlid=&yx=&v=MDE1MzkxRnJDVVJMeWZiK1JyRnkvaFVieklOaW5QZHJHNEg5WE5yWTlGWUlSOGVYMUx1eFlTN0RoMVQzcVRyV00=)
+
+>参考论文： [基于词矢量相似度的短文本分类](http://www.cnki.net/KCMS/detail/detail.aspx?QueryID=0&CurRec=1&recid=&filename=SDDX201412004&dbname=CJFDLAST2015&dbcode=CJFQ&pr=&urlid=&yx=&v=MDE1MzkxRnJDVVJMeWZiK1JyRnkvaFVieklOaW5QZHJHNEg5WE5yWTlGWUlSOGVYMUx1eFlTN0RoMVQzcVRyV00=)
 
 代码中，需要设置LogisticRegression的参数
 ```python
@@ -67,7 +70,8 @@ clf = LogisticRegression(multi_class="multinomial",solver="newton-cg")
 
 ###卷积神经网络
 > 卷积神经网络在NLP中的使用多种多样，这里使用设置不同窗口大小的方法进行探索，即seq-CNN和Bow-CNN
-参考论文： [ (Johnson and Zhang, NAACL 2015) Effective Use of Word Order for Text Categorization with Convolutional Neural Networks](https://arxiv.org/pdf/1412.1058.pdf)
+
+>参考论文： [ (Johnson and Zhang, NAACL 2015) Effective Use of Word Order for Text Categorization with Convolutional Neural Networks](https://arxiv.org/pdf/1412.1058.pdf)
 
 ####Seq-CNN
 由**one-hot编码**拼接而来
