@@ -1,7 +1,7 @@
 #Ch2r_ood_understanding
 
 ---
-本文档为论文**[限定领域口语对话系统中超出领域话语的对话行为识别](http://zixuanke.github.io/Ch2r_ood_understanding/blob/master/paper/限定领域口语对话系统中超出领域话语的对话行为识别.pdf)**的部分实验代码。代码基于Python，需要用到的外部库有：
+本文档为论文**[限定领域口语对话系统中超出领域话语的对话行为识别](https://zixuanke.github.io/docs/%E9%99%90%E5%AE%9A%E9%A2%86%E5%9F%9F%E5%8F%A3%E8%AF%AD%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F%E4%B8%AD%E8%B6%85%E5%87%BA%E9%A2%86%E5%9F%9F%E8%AF%9D%E8%AF%AD%E7%9A%84%E5%AF%B9%E8%AF%9D%E8%A1%8C%E4%B8%BA%E8%AF%86%E5%88%AB.pdf)**的部分实验代码。代码基于Python，需要用到的外部库有：
 
 > * Keras（搭建神经网络）
 > * Scikit-learn（最大熵，随机森林）
